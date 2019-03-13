@@ -16,8 +16,21 @@ def calculate_iou(prediction_box, gt_box):
         returns:
             float: value of the intersection of union for the two boxes.
     """
-    # YOUR CODE HERE
-    raise NotImplementedError
+    #Intersection
+    print(prediction_box)
+    print(gt_box)
+    x_a = np.maximum(prediction_box[0], gt_box[0])
+    y_a = np.maximum(prediction_box[1], gt_box[1])
+    x_b = np.minimum(prediction_box[2], gt_box[2])
+    y_b = np.minimum(prediction_box[3], gt_box[3])
+    area_inter = np.maximum((x_b - x_a + 1),0) * np.maximum((y_b - y_a + 1),0)
+    
+    #area of predicted- and gt-box
+    area_a = (prediction_box[2] - prediction_box[0] + 1) * (prediction_box[3] - prediction_box[1] + 1)
+    area_b = (gt_box[2] - gt_box[0] + 1) * (gt_box[3] - gt_box[1] + 1)
+    
+    iou = area_inter / (area_a + np.transpose(area_b) - area_inter)
+    return iou
 
 def calculate_precision(num_tp, num_fp, num_fn):
     """ Calculates the precision for the given parameters.

@@ -1,7 +1,6 @@
 """
 THERE SHOULD BE NO NEED TO EDIT THIS FILE.
 """
-
 import json
 import numpy as np
 import os
